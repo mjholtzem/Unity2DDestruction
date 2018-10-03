@@ -11,6 +11,7 @@ public class Explodable : MonoBehaviour
     public bool allowRuntimeFragmentation = false;
     public int extraPoints = 0;
     public int subshatterSteps = 0;
+    public float fragmentLifetime = 0;
 
     public string fragmentLayer = "Default";
     public string sortingLayerName = "Default";
@@ -42,6 +43,10 @@ public class Explodable : MonoBehaviour
             {
                 frag.transform.parent = null;
                 frag.SetActive(true);
+                // if lifetime set - add DestroyObjectDelay component to destroy pieces with delay
+                if (fragmentLifetime > 0) {
+                    frag.AddComponent<DestroyObjectDelay>().delay = fragmentLifetime;
+                }
             }
         }
         //if fragments exist destroy the original
@@ -50,6 +55,7 @@ public class Explodable : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
     /// <summary>
     /// Creates fragments and then disables them
     /// </summary>
