@@ -21,6 +21,7 @@ public class ExplodableEditor : Editor {
         myTarget.fragmentLayer = EditorGUILayout.TextField("Fragment Layer", myTarget.fragmentLayer);
         myTarget.sortingLayerName = EditorGUILayout.TextField("Sorting Layer", myTarget.sortingLayerName);
         myTarget.orderInLayer = EditorGUILayout.IntField("Order In Layer", myTarget.orderInLayer);
+        myTarget.fragmentLifetime = EditorGUILayout.FloatField("Fragment Lifetime (0 infinite)", myTarget.fragmentLifetime);
         
         if (myTarget.GetComponent<PolygonCollider2D>() == null && myTarget.GetComponent<BoxCollider2D>() == null)
         {
